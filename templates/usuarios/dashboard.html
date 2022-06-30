@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section class="container mt-2">
+        {% include 'partials/_menu.html' %}
+        <h1>Dashboard</h1>
+        <p>Nome completo: {{ form.nome_completo.value }}</p>
+        <p>Data de nascimento: {{ form.data_nascimento.value }}</p>
+        <p>CPF: {{ form.cpf.value }}</p>
+
+    </section>
+{% endblock %}

@@ -20,8 +20,8 @@
                             <li class="nav-item">><a class="btn btn-outline-danger" href="{% url 'admin:index' %}" role="button">Admin</a></li>
                         {% endif %}
                         {% else %}
-                            <li class="nav-item"><a class="btn btn-outline-danger" href="#" role="button">Entrar</a></li>
-                            <li class="nav-item"><a class="btn btn-outline-danger" href="#" role="button">Autocadastro</a></li>
+                            <li class="nav-item"><a class="btn btn-outline-danger" href="{% url 'login' %}" role="button">Entrar</a></li>
+                            <li class="nav-item"><a class="btn btn-outline-danger" href="{% url 'autocadastro' %}" role="button">Autocadastro</a></li>
                         {% endif %}
                     </ul>
                 </div>
