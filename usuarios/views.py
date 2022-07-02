@@ -1,12 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from usuarios.forms import Autocadastro
 
 
 def autocadastro(request):
     """Cadastra uma nova pessoa no sistema"""
-    form = Autocadastro()
-    contexto = {'form': form}
-    return render(request, 'usuarios/autocadastro.html', contexto)
+
+    if request.method == 'GET':
+        form = Autocadastro()
+        contexto = {'form': form}
+        return render(request, 'usuarios/autocadastro.html', contexto)
+    else:
+        form = Autocadastro(request.POST)
+        if form.is_valid():
+            print(form.data['nome_completo'])
+            form = Autocadastro()
+            contexto = {'form': form}
+            return render(request, 'usuarios/dashboard.html', contexto)
+        else:
+            print('Form inválido')
+            contexto = {'form': form}
+            return render(request, 'usuarios/autocadastro.html', contexto)
 
 
 def login(request):
