@@ -12,16 +12,14 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        {% if user.is_authenticated %}
-                            <li class="nav-item"><a class="btn btn-outline-danger" href="{% url 'index' %}" role="button">Página Principal</a></li>
-                            <li class="nav-item"><a class="btn btn-outline-danger" href="#" role="button">Dashboard</a></li>
-                            <li class="nav-item"><a class="btn btn-outline-danger" href="#" role="button">Logout</a></li>
                         {% if user.is_superuser %}
-                            <li class="nav-item">><a class="btn btn-outline-danger" href="{% url 'admin:index' %}" role="button">Admin</a></li>
+                            <li class="nav-item"><a class="btn btn-outline-danger" href="{% url 'admin:index' %}" role="button">Admin</a></li>
                         {% endif %}
+                        {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="btn btn-outline-danger" href="{% url 'logout' %}" role="button">Logout</a></li>
                         {% else %}
                             <li class="nav-item"><a class="btn btn-outline-danger" href="{% url 'login' %}" role="button">Entrar</a></li>
-                            <li class="nav-item"><a class="btn btn-outline-danger" href="{% url 'autocadastro' %}" role="button">Autocadastro</a></li>
+                            <li class="nav-item"><a class="btn btn-outline-danger" href="{% url 'autocadastro' %}" role="button">Cadastre-se</a></li>
                         {% endif %}
                     </ul>
                 </div>

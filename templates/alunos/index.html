@@ -4,5 +4,32 @@
     <section class="container mt-2">
         {% include 'partials/_menu.html' %}
         <h1>Bem vindo ao AVASUS</h1>
+        {% if user.is_authenticated %}
+            <div class="card text-white bg-danger mb-3" style="width: 22rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Informações de Usuário</h5>
+                    <table class="table table-sm text-white">
+                        <tbody>
+                        <tr>
+                            <th scope="row">Nome Completo</th>
+                            <td>{{ user.nome_completo }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Data de Nascimento</th>
+                            <td>
+                                {{ user.data_nascimento }}
+                                &ensp;( {{ user.get_idade }} anos )
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">CPF</th>
+                            <td>
+                                {{ user.cpf }}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
     </section>
 {% endblock %}
