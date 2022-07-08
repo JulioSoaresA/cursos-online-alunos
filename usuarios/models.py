@@ -45,6 +45,9 @@ class GerenciadorUsuarios(BaseUserManager):
 
 
 class Usuarios(AbstractBaseUser):
+    class Meta:
+        verbose_name_plural = 'Usuários'
+
     email = models.EmailField(verbose_name='email', max_length=255)
     username = models.CharField(max_length=30)
     is_admin = models.BooleanField(default=False)

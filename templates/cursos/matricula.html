@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-2">
+    {% include 'partials/_menu.html' %}
+    <h2>{{ curso.nome }}</h2>
+    <div class="d-flex justify-content-between">
+        <div class="col-6">
+            <div class="my-3">
+                <h5>Componentes do curso:</h5>
+                {% if componentes %}
+                {% for componente in componentes %}
+                <div class="card border-danger mb-3">
+                    <div class="card-header bg-transparent border-danger"><h6>Carga horária: {{ componente.carga_horaria }}h</h6></div>
+                    <div class="card-body text-danger">
+                        <p class="card-text">{{ componente.nome_componente }}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-danger">
+                        <a class="btn btn-outline-secondary" href="" role="button">Enviar</a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+
+
+        <div class="col-8">
+            <div class="my-5">
+                <div class="card border-danger mb-3">
+                    <div class="card-header bg-transparent border-danger"><h6>Alunos matriculados</h6></div>
+                    <div class="card-body">
+                        {% if matriculas %}
+                        {% for matricula in matriculas %}
+                            <p class="card-text">{{ matricula.nome_completo }}</p>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

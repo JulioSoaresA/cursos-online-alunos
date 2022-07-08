@@ -27,7 +27,9 @@
                 </div>
             </div>
             <div>
-                <a class="btn btn-outline-secondary" href="" role="button">Matricule-se</a>
+                {% if matriculas == False %}
+                    <a class="btn btn-outline-secondary" href="{% url 'matricula' curso.id%}" role="button">Matricule-se</a>
+                {% endif %}
             </div>
         </div>
     </section>
