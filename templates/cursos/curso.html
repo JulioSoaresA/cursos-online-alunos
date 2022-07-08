@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section class="container mt-2">
+        {% include 'partials/_menu.html' %}
+        <div class="row">
+            <div class="col">
+                <div class="course-headline my-5">
+                    <h2>{{ curso.nome }}</h2>
+                    <div class="card border-danger mb-3" style="max-width: 72rem;">
+                        <div class="card-body text-danger">
+                            <h5 class="card-title">Descrição</h5>
+                            <p class="card-text">{{ curso.descricao }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card border-danger mb-3" style="max-width: 72rem;">
+                    <div class="card-header bg-transparent border-danger"><h6>Carga horária: {{ curso.carga_horaria_total }}h | Idade mínima: {{ curso.idade_minima }}</h6></div>
+                    <div class="card-body text-danger">
+                        <h5 class="card-title">Objetivos</h5>
+                        <p class="card-text">{{ curso.objetivo }}</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a class="btn btn-outline-secondary" href="" role="button">Matricule-se</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -23,6 +23,8 @@ INSTALLED_APPS = [
     # My apps
     'usuarios',
     'alunos',
+    'AVASUS',
+    'cursos',
 
     # Django apps
     'django.contrib.admin',
@@ -131,3 +133,5 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     messages.SUCCESS: 'success',
 }
+
+FIXTURE_DIRS = os.path.join(BASE_DIR, 'fixtures')

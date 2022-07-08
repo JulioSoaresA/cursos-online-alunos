@@ -1,0 +1,135 @@
+[
+  {
+    "model": "cursos.Cursos",
+    "pk": 1,
+    "fields": {
+      "nome": "Sífilis: Vigilância Epidemiológica",
+      "descricao": "O módulo Sífilis: Vigilância Epidemiológica tem como objetivo promover uma atualização dos profissionais de saúde acerca dos conceitos essenciais nessa área de conhecimento, com foco na sífilis. Este módulo traz uma revisão de conceitos relativos aos sistemas de notificação e fluxo da informação e, também, acerca do boletim epidemiológico com sua análise crítica. Além disso, trata da importância da interação entre as áreas da vigilância epidemiológica e atenção à saúde em seus distintos níveis de cuidado na Rede de Atenção à Saúde (RAS). O módulo se propõe, ainda, a fornecer subsídios que podem embasar a conduta de profissionais para a realização dos processos de identificação e investigação de casos epidemiológicos de sífilis, a notificação compulsória, a alimentação regular e a retroalimentação das bases de dados, de forma a prover condições para o planejamento das ações de saúde a ser implementadas e o controle de determinantes e condicionantes dos agravos de notificação compulsória",
+      "objetivo": "Proporcionar conhecimentos para médicos, enfermeiros e demais profissionais de saúde acerca da Vigilância Epidemiológica e sua integração com a Atenção em saúde, com foco na sífilis adquirida, congênita e em gestantes.",
+      "idade_minima": 12,
+      "componentes": [
+        {
+          "nome": "Integração ao AVASUS e PEPSUS",
+          "carga_horaria": 30,
+          "ordem": 1
+        },
+        {
+          "nome": "Atenção à Saúde do Idoso na Atenção Primária à Saúde.",
+          "carga_horaria": 50,
+          "ordem": 2
+        },
+        {
+          "nome": "Abordagem do Câncer na Atenção Primária à Saúde.",
+          "carga_horaria": 30,
+          "ordem": 3
+        },
+        {
+          "nome": "Controle das Doenças Crônicas Não Transmissíveis na Atenção Primária à Saúde.",
+          "carga_horaria": 20,
+          "ordem": 4
+        },
+        {
+          "nome": "Tópicos Especiais em Saúde da Família.",
+          "carga_horaria": 40,
+          "ordem": 5
+        },
+        {
+          "nome": "Monitoramento e Avaliação.",
+          "carga_horaria": 40,
+          "ordem": 6
+        },
+        {
+          "nome": "Seminário de Apresentação do TCC.",
+          "carga_horaria": 40,
+          "ordem": 7
+        }
+      ]
+    }
+  },
+  {
+    "model": "cursos.Cursos",
+    "pk": 2,
+    "fields": {
+      "nome": "Sífilis: Aspectos Clínicos e Diagnóstico Diferencial",
+      "descricao": "O módulo “SÍFILIS: ASPECTOS CLÍNICOS E DIAGNÓSTICO DIFERENCIAL” tem como objetivo promover uma revisão e atualização dos profissionais de saúde acerca dos conceitos essenciais para o reconhecimento da sífilis e o estabelecimento da conduta adequada. Neste módulo, revisamos os conceitos básicos relacionados aos aspectos clínicos e ao diagnóstico diferencial da sífilis, assim como as suas diversas formas de apresentação clínica. O módulo contempla ainda as apresentações clínicas incomuns, com seus potenciais de gravidade e o diagnóstico diferencial com outras patologias com quadros clínicos semelhantes. A reemergência justifica a preocupação com todas as formas de apresentação da doença, portanto, a proposta é fornecer subsídios que embasam a conduta do profissional de saúde na promoção de uma atenção integral aos pacientes com sífilis.",
+      "objetivo": "Promover a atualização dos profissionais de saúde acerca dos conceitos essenciais para o reconhecimento e tratamento precoce da sífilis, aspectos fundamentais ao controle da doença.",
+      "idade_minima": 15,
+      "componentes": [
+        {
+          "nome": "Conceituando e classificando a sífilis",
+          "carga_horaria": 20,
+          "ordem": 1
+        },
+        {
+          "nome": "Formas relevantes de apresentação da sífilis (parte I)",
+          "carga_horaria": 10,
+          "ordem": 2
+        },
+        {
+          "nome": "Formas relevantes de apresentação da sífilis (parte II)",
+          "carga_horaria": 10,
+          "ordem": 3
+        }
+      ]
+    }
+  },
+  {
+    "model": "cursos.Cursos",
+    "pk": 3,
+    "fields": {
+      "nome": "Curso Teórico de Manejo do Aleitamento Materno",
+      "descricao": "Apesar do aleitamento materno ser um ato fisiológico, é necessário que os profissionais de saúde, tanto da atenção primária à saúde quanto da atenção hospitalar, sejam capacitados em como manejar a amamentação desde a gestação até o pós-parto. É importante que esses profissionais informem às gestantes e puérperas sobre o aleitamento materno, abordando temas como: benefícios para a saúde da criança e da mulher a curto e longo prazo, pega e posição corretas na amamentação, entre outros. Os profissionais de saúde das maternidades e da Atenção Primária à Saúde devem estar capacitados para observar/avaliar uma mamada para caso seja necessário intervir com técnicas de aconselhamento e manejando da melhor forma possível. Nesse sentido, este curso se propõe a apresentar os principais conteúdos teóricos sobre o manejo da amamentação nos serviços de saúde para profissionais que atuam no atendimento às mães, às crianças e suas famílias nesse processo.",
+      "objetivo": "Capacitar os profissionais da atenção primárias e outros níveis de atenção quanto ao manejo clínico da amamentação para atender mulheres, crianças e suas famílias quando precisam de apoio para estabelecer e/ou manter a amamentação.",
+      "idade_minima": 16,
+      "componentes": [
+        {
+          "nome": "HABILIDADES DE COMUNICAÇÃO NA ASSISTÊNCIA ÀS MÃES",
+          "carga_horaria": 10,
+          "ordem": 1
+        },
+        {
+          "nome": "A AMAMENTAÇÃO NA MATERNIDADE",
+          "carga_horaria": 10,
+          "ordem": 2
+        },
+        {
+          "nome": "PROTEGENDO A AMAMENTAÇÃO",
+          "carga_horaria": 10,
+          "ordem": 3
+        },
+        {
+          "nome": "INICIATIVA HOSPITAL AMIGO DA CRIANÇA (IHAC)",
+          "carga_horaria": 10,
+          "ordem": 4
+        }
+      ]
+    }
+  },
+  {
+    "model": "cursos.Cursos",
+    "pk": 4,
+    "fields": {
+      "nome": "covid-19: uso seguro de EPI ",
+      "descricao": "O módulo “COVID-19: uso seguro de EPI” tem como objetivo promover atualização para os profissionais de saúde acerca dos conceitos essenciais nessa área de conhecimento, em face da pandemia pela COVID-19 e da necessidade de utilização segura dos Equipamentos de Proteção Individual (EPI), com foco na paramentação e desparamentação e também na prevenção de lesão por pressão associada ao uso da máscara N95 ou equivalente e do protetor facial pelo profissional de saúde.",
+      "objetivo": "Identificar o uso seguro e adequado dos Equipamentos de Proteção Individual (EPI) no contexto da pandemia COVID-19.\n\n",
+      "idade_minima": 14,
+      "componentes": [
+        {
+          "nome": "COVID-19: DESAFIO PARA A SAÚDE OCUPACIONAL",
+          "carga_horaria": 15,
+          "ordem": 1
+        },
+        {
+          "nome": "LESÃO POR PRESSÃO RELACIONADA A DISPOSITIVO MÉDICO",
+          "carga_horaria": 15,
+          "ordem": 2
+        },
+        {
+          "nome": "SEGURANÇA NO USO DE EPI EM TEMPOS DE COVID-19",
+          "carga_horaria": 10,
+          "ordem": 3
+        }
+      ]
+    }
+  }
+]
