@@ -1,12 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+    <!-- Infiormações de usuário -->
     <section class="container mt-2">
         {% include 'partials/_menu.html' %}
-        <h1>Dashboard</h1>
-        <p>Nome completo: {{ form.nome_completo.value }}</p>
-        <p>Data de nascimento: {{ form.data_nascimento.value }}</p>
-        <p>CPF: {{ form.cpf.value }}</p>
-
+        {% if user.is_authenticated %}
+        <div class="my-5"><h2>Meus cursos</h2></div>
+            <div class="card-group">
+                {% if cursos_usuario %}
+                {% for curso in cursos_usuario %}
+                <div class="card border-danger mb-3" style="max-width: 22rem;">
+                    <div class="card-body text-danger">
+                        <h5 class="card-title">{{ curso.nome }}</h5>
+                        <p class="card-text">{{ curso.objetivo }}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-danger">
+                        <a class="btn btn-outline-danger" href="{% url 'matricula' curso.id %}" role="button">Ver curso</a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        {% endif %}
     </section>
 {% endblock %}

@@ -16,11 +16,38 @@
                         <p class="card-text">{{ componente.nome_componente }}</p>
                     </div>
                     <div class="card-footer bg-transparent border-danger">
-                        <a class="btn btn-outline-secondary" href="" role="button">Enviar</a>
+                        <form action="{% url 'envia_atividade' componente.id %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <label for="file">Atividade</label>
+                            <input type="file" name="envia_atividade" class="form-control" required>
+
+
+                            <button class="btn btn-outline-secondary" type="submit">Enviar</button>
+
+                            {% for atividade in comparador_atividade %}
+                                {% if atividade in componente.nome_componente %}
+                                    {% for atividade2 in atividades %}
+                                        {% if atividade2.nome_componente == atividade and atividade2.status == 'APROVADO'%}
+                                            <button class="btn btn-outline-success" disabled>{{atividade2.status}}</button>
+                                        {% elif atividade2.nome_componente == atividade and atividade2.status == 'REPROVADO'%}
+                                            <button class="btn btn-outline-danger" disabled>{{atividade2.status}} - Reenvie a atividade</button>
+                                        {% elif atividade2.nome_componente == atividade and atividade2.status == 'AGUARDANDO_AVALIACAO'%}
+                                            <button class="btn btn-outline-secondary" disabled>{{atividade2.status}}</button>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </form>
                     </div>
                 </div>
                 {% endfor %}
                 {% endif %}
+                <div class="col-8">
+                    {% if porcentagem == 100 %}
+                    <a href="" type="button" class="btn btn-danger">Curso concluído</a>
+                    <a href="{% url 'gera_certificado' curso.id %}" type="button" class="btn btn-secondary">Gerar certificado</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
 
@@ -37,6 +64,9 @@
                         {% endfor %}
                         {% endif %}
                     </div>
+                </div>
+                <div class="col-8">
+                    <button class="btn btn-danger" disabled>Seu progresso: {{porcentagem}}%</button>
                 </div>
             </div>
         </div>

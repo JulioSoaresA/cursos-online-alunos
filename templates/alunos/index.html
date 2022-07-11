@@ -4,7 +4,7 @@
     <!-- Infiormações de usuário -->
     <section class="container mt-2">
         {% include 'partials/_menu.html' %}
-        <h1>Bem vindo ao AVASUS</h1>
+        <div class="my-5"><h1>Bem vindo ao AVASUS</h1></div>
         {% if user.is_authenticated %}
             <div class="card text-white bg-danger mb-3" style="width: 22rem;">
                 <div class="card-body">
@@ -36,7 +36,7 @@
             </section>
             <!-- Informações dos cursos -->
             <section class="container m2">
-                <h2>Cursos</h2>
+                <div class="my-2"><h2>Cursos</h2></div>
                 <div class="card-group">
                 {% if cursos %}
                 {% for curso in cursos %}

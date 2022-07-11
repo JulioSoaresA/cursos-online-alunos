@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from .models import Usuarios
 from usuarios.forms import Autocadastro
+from cursos.models import Cursos, Matriculado
 
 
 def autocadastro(request):
@@ -55,10 +56,15 @@ def login(request):
 
 def dashboard(request):
     """Renderiza o deshboard do usuário"""
-    if request.method == 'POST':
-        form = Autocadastro(request.POST)
-        contexto = {'form': form}
-        return render(request, 'usuarios/dashboard.html', contexto)
+    if request.user.is_authenticated:
+        id_usuario = Matriculado.objects.get(cpf=request.user.cpf).id
+        cursos_usuario = Cursos.objects.all().filter(matriculados=id_usuario)
+        context = {
+            'cursos_usuario': cursos_usuario
+        }
+        return render(request, 'usuarios/dashboard.html', context)
+    else:
+        return redirect('index')
 
 
 def logout(request):

@@ -1,17 +1,35 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+from cursos.validation import file_size
+
+
+class StatusAtividade(models.TextChoices):
+    AGUARDANDO_AVALIACAO = 'AGUARDANDO_AVALIACAO', _('Aguardando avaliação')
+    APROVADO = 'APROVADO', _('Aprovado')
+    REPROVADO = 'REPROVADO', _('Reprovado')
 
 
 class Matriculado(models.Model):
     nome_completo = models.CharField(verbose_name='Nome completo', max_length=150)
     cpf = models.CharField(verbose_name='CPF', max_length=11)
+    porcentagem = models.IntegerField(verbose_name='Porcentagem do curso', null=True)
 
     def __str__(self):
         return self.nome_completo
 
 
+class Atividades(models.Model):
+    id_usuario = models.IntegerField(verbose_name='Id do usuário', null=True)
+    nome_usuario = models.CharField(verbose_name='Nome do aluno', max_length=150, null=True)
+    nome_componente = models.CharField(verbose_name='Nome do componente', max_length=150, null=True)
+    arquivo = models.FileField(verbose_name='Atividade', upload_to='uploads/', validators=[file_size])
+    status = models.TextField(verbose_name='Status', choices=StatusAtividade.choices, default=0, null=True)
+
+
 class Componente(models.Model):
     nome_componente = models.CharField(verbose_name='Nome do componente', max_length=150)
     carga_horaria = models.IntegerField(verbose_name='Carga horária')
+    arquivo = models.ManyToManyField(Atividades, verbose_name='Atividades', related_name='matriculados')
     ordem = models.IntegerField()
 
     class Meta:
@@ -32,6 +50,7 @@ class Cursos(models.Model):
     idade_minima = models.IntegerField(verbose_name='Idade mínima')
     componentes = models.ManyToManyField(Componente, related_name='cursos', verbose_name='Componentes')
     matriculados = models.ManyToManyField(Matriculado, related_name='matricula')
+    porcentagem_curso = models.ManyToManyField(Matriculado, related_name='porcentagem_curso')
 
     def __str__(self):
         return self.nome

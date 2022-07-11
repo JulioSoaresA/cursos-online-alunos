@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User, AbstractBaseUser, BaseUserManager
 from datetime import date
 
+
 class EscolhasPrivacidade(models.TextChoices):
     SIM = 'SIM', _('Sim')
     NAO = 'NAO', _('Não')
