@@ -49,6 +49,7 @@ class Cursos(models.Model):
 
 
 class Matriculado(models.Model):
+    id_usuario = models.IntegerField(verbose_name='Id do usuário', null=True)
     nome_completo = models.CharField(verbose_name='Nome completo', max_length=150)
     cpf = models.CharField(verbose_name='CPF', max_length=11)
     curso = models.ForeignKey(Cursos, on_delete=models.CASCADE, null=True, related_name='cursos')

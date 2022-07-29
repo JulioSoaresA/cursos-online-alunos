@@ -56,8 +56,6 @@
             </div>
         </div>
 
-
-
         <div class="col-8">
             <div class="my-5">
                 <div class="card border-danger mb-3">
@@ -65,9 +63,19 @@
                     <div class="card-body">
                         {% if matriculas %}
                         {% for matricula in matriculas %}
-                            <p class="card-text">{{ matricula.nome_completo }}</p>
+                            {% for usuario in usuarios %}
+                            {% if usuario.pk == matricula.id_usuario %}
+                                {% if usuario.indica_privacidade == 'SIM' %}
+                                    <p class="card-text">{{ matricula.nome_completo }} | {{ matricula.porcentagem }} %</p>
+                                {% else %}
+                                    <p class="card-text">{{ matricula.nome_completo }} | - %</p>
+                                {% endif %}
+                            {% endif %}
+                            {% endfor %}
                         {% endfor %}
                         {% endif %}
+
+
                     </div>
                 </div>
                 <div class="col-8">

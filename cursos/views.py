@@ -1,11 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect, get_list_or_404
 from cursos.models import Cursos, Componente, Matriculado, Atividades
+from usuarios.models import Usuarios
 from datetime import datetime
 
 
 def curso(request, curso_id):
     curso = get_object_or_404(Cursos, pk=curso_id)
     matriculas = Matriculado.objects.all().filter(cpf=request.user.cpf, curso_id=curso_id).exists()
+    usuarios = Usuarios.objects.all()
+    print(usuarios)
+    for usuario in usuarios:
+        print(usuario.indica_privacidade)
     curso_a_exibir = {
         'curso': curso,
         'matriculas': matriculas
@@ -15,11 +20,14 @@ def curso(request, curso_id):
 
 def matricula(request, curso_id):
     curso = get_object_or_404(Cursos, pk=curso_id)
+    id_usuario = request.user.pk
+    usuarios = Usuarios.objects.all()
+
     if request.user.is_authenticated and not Matriculado.objects.filter(cpf=request.user.cpf, curso_id=curso_id).exists():
         componentes = curso.componentes.all().order_by('ordem')
         matriculas = Matriculado.objects.all().filter(curso_id=curso_id).order_by('nome_completo')
-        matricula_autenticada = get_object_or_404(Matriculado, cpf=request.user.cpf)
         atividades = Atividades.objects.filter(nome_usuario=request.user)
+        porcentagem_curso = 0
         atividades2 = []
 
         for atividade in atividades:
@@ -29,16 +37,15 @@ def matricula(request, curso_id):
             'curso': curso,
             'componentes': componentes,
             'matriculas': matriculas,
-            'matricula_autenticada': matricula_autenticada,
             'atividades': atividades,
-            'comparador_atividade': atividades2
+            'comparador_atividade': atividades2,
+            'porcentagem': porcentagem_curso,
+            'usuarios': usuarios,
         }
         usuario = request.user.nome_completo
         cpf = request.user.cpf
-        if not Matriculado.objects.filter(cpf=cpf, curso_id=curso_id).exists():
-            novo_matriculado = Matriculado(nome_completo=usuario, cpf=cpf, curso_id=curso_id, porcentagem=0)
-            novo_matriculado.save()
-            return render(request, 'cursos/matricula.html', context)
+        novo_matriculado = Matriculado(id_usuario=id_usuario, nome_completo=usuario, cpf=cpf, curso_id=curso_id, porcentagem=0)
+        novo_matriculado.save()
         return render(request, 'cursos/matricula.html', context)
 
     else:
@@ -74,6 +81,7 @@ def matricula(request, curso_id):
                 'atividades': atividades,
                 'comparador_atividade': atividades2,
                 'porcentagem': porcentagem_curso,
+                'usuarios': usuarios,
 
             }
             return render(request, 'cursos/matricula.html', context)
@@ -85,7 +93,7 @@ def envia_atividade(request, componente_id):
     componente = get_object_or_404(Componente, pk=componente_id)
     curso = componente.curso.all().first()
     if request.method == 'POST':
-        if Atividades.objects.filter(nome_componente=componente).exists():
+        if Atividades.objects.filter(nome_componente=componente, id_usuario=request.user.pk).exists():
             atividade = Atividades.objects.get(nome_componente=componente)
             atividade.delete()
             arquivo = request.FILES['envia_atividade']
