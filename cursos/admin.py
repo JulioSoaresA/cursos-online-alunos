@@ -3,10 +3,9 @@ from .models import Cursos, Componente, Matriculado, Atividades
 
 
 class CursosAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'carga_horaria_total', 'idade_minima')
-    list_display_links = ('nome', )
+    list_display = ('id', 'nome', 'carga_horaria_total', 'idade_minima')
+    list_display_links = ('id', 'nome', )
     list_filter = ('nome', 'descricao')
-    readonly_fields = ('matriculados', )
     filter_horizontal = ()
     fieldsets = ()
 
@@ -20,8 +19,8 @@ class ComponenteAdmin(admin.ModelAdmin):
 
 
 class MatriculadoAdmin(admin.ModelAdmin):
-    list_display = ('nome_completo', 'cpf', )
-    readonly_fields = ('nome_completo', 'cpf', )
+    list_display = ('nome_completo', 'cpf', 'curso')
+    readonly_fields = ('nome_completo', 'cpf', 'curso', 'porcentagem')
 
 
 class AtividadeAdmin(admin.ModelAdmin):

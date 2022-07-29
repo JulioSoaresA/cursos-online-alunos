@@ -57,9 +57,9 @@ class Usuarios(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
-    nome_completo = models.CharField(verbose_name='Nome completo', max_length=100, unique=True)
+    nome_completo = models.CharField(verbose_name='Nome completo', max_length=100)
     cpf = models.CharField(verbose_name='CPF', max_length=11, unique=True)
-    data_nascimento = models.DateField(verbose_name='Data de nascimento', unique=True)
+    data_nascimento = models.DateField(verbose_name='Data de nascimento')
     indica_privacidade = models.TextField(verbose_name='Privacidade', choices=EscolhasPrivacidade.choices, max_length=3, default=0, null=True)
     password2 = models.CharField(max_length=100)
 

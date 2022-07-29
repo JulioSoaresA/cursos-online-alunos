@@ -8,14 +8,14 @@
         <div class="my-5"><h2>Meus cursos</h2></div>
             <div class="card-group">
                 {% if cursos_usuario %}
-                {% for curso in cursos_usuario %}
+                {% for usuario in cursos_usuario %}
                 <div class="card border-danger mb-3" style="max-width: 22rem;">
                     <div class="card-body text-danger">
-                        <h5 class="card-title">{{ curso.nome }}</h5>
-                        <p class="card-text">{{ curso.objetivo }}</p>
+                        <h5 class="card-title">{{ usuario.curso.nome }}</h5>
+                        <p class="card-text">{{ usuario.curso.objetivo }}</p>
                     </div>
                     <div class="card-footer bg-transparent border-danger">
-                        <a class="btn btn-outline-danger" href="{% url 'matricula' curso.id %}" role="button">Ver curso</a>
+                        <a class="btn btn-outline-danger" href="{% url 'matricula' usuario.curso.id %}" role="button">Ver curso</a>
                     </div>
                 </div>
                 {% endfor %}

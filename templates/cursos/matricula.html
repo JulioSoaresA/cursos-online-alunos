@@ -20,31 +20,36 @@
                             {% csrf_token %}
                             <label for="file">Atividade</label>
                             <input type="file" name="envia_atividade" class="form-control" required>
+                            <!--<button class="btn btn-outline-secondary" type="submit">Enviar</button>-->
 
-
-                            <button class="btn btn-outline-secondary" type="submit">Enviar</button>
-
-                            {% for atividade in comparador_atividade %}
+                            {% if componente.nome_componente in comparador_atividade %}
+                                {% for atividade in comparador_atividade %}
                                 {% if atividade in componente.nome_componente %}
                                     {% for atividade2 in atividades %}
                                         {% if atividade2.nome_componente == atividade and atividade2.status == 'APROVADO'%}
                                             <button class="btn btn-outline-success" disabled>{{atividade2.status}}</button>
                                         {% elif atividade2.nome_componente == atividade and atividade2.status == 'REPROVADO'%}
-                                            <button class="btn btn-outline-danger" disabled>{{atividade2.status}} - Reenvie a atividade</button>
+                                            <button class="btn btn-outline-danger">{{atividade2.status}} - Reenvie a atividade</button>
                                         {% elif atividade2.nome_componente == atividade and atividade2.status == 'AGUARDANDO_AVALIACAO'%}
                                             <button class="btn btn-outline-secondary" disabled>{{atividade2.status}}</button>
                                         {% endif %}
                                     {% endfor %}
                                 {% endif %}
                             {% endfor %}
+                            {% else %}
+
+                                    <button class="btn btn-outline-secondary" type="submit">Enviar</button>
+
+
+                            {% endif %}
                         </form>
                     </div>
                 </div>
                 {% endfor %}
                 {% endif %}
                 <div class="col-8">
-                    {% if porcentagem == 100 %}
-                    <a href="" type="button" class="btn btn-danger">Curso concluído</a>
+                    {% if matricula_autenticada.porcentagem == 100 %}
+                    <button class="btn btn-danger">Curso concluído</button>
                     <a href="{% url 'gera_certificado' curso.id %}" type="button" class="btn btn-secondary">Gerar certificado</a>
                     {% endif %}
                 </div>
@@ -66,7 +71,7 @@
                     </div>
                 </div>
                 <div class="col-8">
-                    <button class="btn btn-danger" disabled>Seu progresso: {{porcentagem}}%</button>
+                    <button class="btn btn-danger" disabled>Seu progresso: {{matricula_autenticada.porcentagem}}%</button>
                 </div>
             </div>
         </div>

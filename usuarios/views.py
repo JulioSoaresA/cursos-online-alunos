@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from django.contrib import auth, messages
 from .models import Usuarios
 from usuarios.forms import Autocadastro
@@ -57,8 +57,7 @@ def login(request):
 def dashboard(request):
     """Renderiza o deshboard do usuário"""
     if request.user.is_authenticated:
-        id_usuario = Matriculado.objects.get(cpf=request.user.cpf).id
-        cursos_usuario = Cursos.objects.all().filter(matriculados=id_usuario)
+        cursos_usuario = get_list_or_404(Matriculado, cpf=request.user.cpf)
         context = {
             'cursos_usuario': cursos_usuario
         }

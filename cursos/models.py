@@ -9,21 +9,15 @@ class StatusAtividade(models.TextChoices):
     REPROVADO = 'REPROVADO', _('Reprovado')
 
 
-class Matriculado(models.Model):
-    nome_completo = models.CharField(verbose_name='Nome completo', max_length=150)
-    cpf = models.CharField(verbose_name='CPF', max_length=11)
-    porcentagem = models.IntegerField(verbose_name='Porcentagem do curso', null=True)
-
-    def __str__(self):
-        return self.nome_completo
-
-
 class Atividades(models.Model):
     id_usuario = models.IntegerField(verbose_name='Id do usuário', null=True)
     nome_usuario = models.CharField(verbose_name='Nome do aluno', max_length=150, null=True)
     nome_componente = models.CharField(verbose_name='Nome do componente', max_length=150, null=True)
     arquivo = models.FileField(verbose_name='Atividade', upload_to='uploads/', validators=[file_size])
     status = models.TextField(verbose_name='Status', choices=StatusAtividade.choices, default=0, null=True)
+
+    def __str__(self):
+        return self.nome_componente
 
 
 class Componente(models.Model):
@@ -48,9 +42,17 @@ class Cursos(models.Model):
     objetivo = models.TextField(verbose_name='Objetivo')
     carga_horaria_total = property(lambda self: sum(comp.carga_horaria for comp in self.componentes.all()))
     idade_minima = models.IntegerField(verbose_name='Idade mínima')
-    componentes = models.ManyToManyField(Componente, related_name='cursos', verbose_name='Componentes')
-    matriculados = models.ManyToManyField(Matriculado, related_name='matricula')
-    porcentagem_curso = models.ManyToManyField(Matriculado, related_name='porcentagem_curso')
+    componentes = models.ManyToManyField(Componente, verbose_name='Componentes', related_name='curso')
 
     def __str__(self):
         return self.nome
+
+
+class Matriculado(models.Model):
+    nome_completo = models.CharField(verbose_name='Nome completo', max_length=150)
+    cpf = models.CharField(verbose_name='CPF', max_length=11)
+    curso = models.ForeignKey(Cursos, on_delete=models.CASCADE, null=True, related_name='cursos')
+    porcentagem = models.IntegerField(verbose_name='Porcentagem do curso', null=True)
+
+    def __str__(self):
+        return self.nome_completo
