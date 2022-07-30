@@ -8,9 +8,7 @@ def curso(request, curso_id):
     curso = get_object_or_404(Cursos, pk=curso_id)
     matriculas = Matriculado.objects.all().filter(cpf=request.user.cpf, curso_id=curso_id).exists()
     usuarios = Usuarios.objects.all()
-    print(usuarios)
-    for usuario in usuarios:
-        print(usuario.indica_privacidade)
+
     curso_a_exibir = {
         'curso': curso,
         'matriculas': matriculas
@@ -23,7 +21,8 @@ def matricula(request, curso_id):
     id_usuario = request.user.pk
     usuarios = Usuarios.objects.all()
 
-    if request.user.is_authenticated and not Matriculado.objects.filter(cpf=request.user.cpf, curso_id=curso_id).exists():
+    if request.user.is_authenticated and not Matriculado.objects.filter(cpf=request.user.cpf,
+                                                                        curso_id=curso_id).exists():
         componentes = curso.componentes.all().order_by('ordem')
         matriculas = Matriculado.objects.all().filter(curso_id=curso_id).order_by('nome_completo')
         atividades = Atividades.objects.filter(nome_usuario=request.user)
@@ -56,6 +55,7 @@ def matricula(request, curso_id):
             matricula_autenticada = get_object_or_404(Matriculado, cpf=request.user.cpf, curso_id=curso_id)
             atividades = Atividades.objects.filter(id_usuario=pk_usuario)
             atividades2 = []
+            componentes_aprovados = []
             quantidade_componentes = Componente.objects.prefetch_related('curso').filter(curso=curso_id).count()
 
             counter = 0
@@ -63,6 +63,7 @@ def matricula(request, curso_id):
                 for atividade in atividades:
                     if componente.nome_componente == atividade.nome_componente:
                         if atividade.status == 'APROVADO':
+                            componentes_aprovados.append(componente.ordem)
                             counter += 1
 
             porcentagem_curso = int(counter / quantidade_componentes * 100)
@@ -73,6 +74,10 @@ def matricula(request, curso_id):
             for atividade in atividades:
                 atividades2.append(atividade.nome_componente)
 
+            ultimo_componente_aprovado = -1
+            if len(componentes_aprovados) > 0:
+                ultimo_componente_aprovado = componentes_aprovados[-1]
+
             context = {
                 'curso': curso,
                 'componentes': componentes,
@@ -82,6 +87,7 @@ def matricula(request, curso_id):
                 'comparador_atividade': atividades2,
                 'porcentagem': porcentagem_curso,
                 'usuarios': usuarios,
+                'ultimo_componente_aprovado': ultimo_componente_aprovado,
 
             }
             return render(request, 'cursos/matricula.html', context)
@@ -98,7 +104,7 @@ def envia_atividade(request, componente_id):
             atividade.delete()
             arquivo = request.FILES['envia_atividade']
             usuario = Matriculado.objects.get(cpf=request.user.cpf, curso_id=curso.id).id
-            nova_avitidade = Atividades(arquivo=arquivo, id_usuario=usuario,  nome_componente=componente, nome_usuario=request.user, status='AGUARDANDO_AVALIACAO')
+            nova_avitidade = Atividades(arquivo=arquivo, id_usuario=usuario, nome_componente=componente, nome_usuario=request.user, status='AGUARDANDO_AVALIACAO')
             nova_avitidade.save()
             componente.arquivo.add(nova_avitidade)
             return redirect('dashboard')
@@ -121,10 +127,10 @@ def envia_atividade(request, componente_id):
 
 
 def gera_certificado(request, curso_id):
-        data_conclusao = datetime.now()
-        curso = get_object_or_404(Cursos, pk=curso_id)
-        curso_a_exibir = {
-            'curso': curso,
-            'conclusao': data_conclusao
-        }
-        return render(request, 'cursos/certificado.html', curso_a_exibir)
+    data_conclusao = datetime.now()
+    curso = get_object_or_404(Cursos, pk=curso_id)
+    curso_a_exibir = {
+        'curso': curso,
+        'conclusao': data_conclusao
+    }
+    return render(request, 'cursos/certificado.html', curso_a_exibir)

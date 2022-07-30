@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_filter_tag %}
 {% block content %}
 <div class="container mt-2">
     {% include 'partials/_menu.html' %}
@@ -20,7 +21,6 @@
                             {% csrf_token %}
                             <label for="file">Atividade</label>
                             <input type="file" name="envia_atividade" class="form-control" required>
-                            <!--<button class="btn btn-outline-secondary" type="submit">Enviar</button>-->
 
                             {% if componente.nome_componente in comparador_atividade %}
                                 {% for atividade in comparador_atividade %}
@@ -34,13 +34,19 @@
                                             <button class="btn btn-outline-secondary" disabled>{{atividade2.status}}</button>
                                         {% endif %}
                                     {% endfor %}
+                                {% else %}
+
                                 {% endif %}
-                            {% endfor %}
+                                {% endfor %}
                             {% else %}
 
+                                {% if ultimo_componente_aprovado == -1 and componente.ordem == 1%}
                                     <button class="btn btn-outline-secondary" type="submit">Enviar</button>
-
-
+                                {% elif componente.ordem == ultimo_componente_aprovado|plus_one %}
+                                    <button class="btn btn-outline-secondary" type="submit">Enviar</button>
+                                {% else %}
+                                    <button class="btn btn-outline-secondary" type="submit" disabled>Enviar</button>
+                                {% endif %}
                             {% endif %}
                         </form>
                     </div>
