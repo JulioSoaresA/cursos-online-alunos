@@ -57,9 +57,8 @@ def login(request):
 def dashboard(request):
     """Renderiza o deshboard do usuário"""
     matriculado = Matriculado.objects.all().filter(id_usuario=request.user.pk).exists()
-    print(matriculado)
     if request.user.is_authenticated and matriculado:
-        cursos_usuario = get_list_or_404(Matriculado, cpf=request.user.cpf)
+        cursos_usuario = get_list_or_404(Matriculado.objects.all().filter(cpf=request.user.cpf).order_by('curso_id'))
         context = {
             'cursos_usuario': cursos_usuario
         }

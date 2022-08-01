@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'alunos',
     'AVASUS',
     'cursos',
+    'captcha',
 
     # Django apps
     'django.contrib.admin',

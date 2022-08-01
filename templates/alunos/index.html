@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
     <!-- Infiormações de usuário -->
-    <section class="container mt-2">
+    <section class="container">
         {% include 'partials/_menu.html' %}
         <div class="my-5"><h1>Bem vindo ao AVASUS</h1></div>
         {% if user.is_authenticated %}
@@ -53,5 +53,9 @@
                 {% endif %}
                 </div>
             </section>
+
+            <div class="container m2">
+                <p>Validar certificado:  <a class="btn btn-outline-secondary" href="{% url 'valida_certificado' %}" role="button">Validar</a></p>
+            </div>
         {% endif %}
 {% endblock %}

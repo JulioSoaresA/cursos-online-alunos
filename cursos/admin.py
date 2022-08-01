@@ -20,7 +20,7 @@ class ComponenteAdmin(admin.ModelAdmin):
 
 class MatriculadoAdmin(admin.ModelAdmin):
     list_display = ('nome_completo', 'cpf', 'curso')
-    readonly_fields = ('nome_completo', 'cpf', 'curso', 'porcentagem')
+    readonly_fields = ('id_usuario', 'nome_completo', 'cpf', 'curso', 'porcentagem', 'data_inscricao', 'data_conclusao', 'token_validacao')
 
 
 class AtividadeAdmin(admin.ModelAdmin):

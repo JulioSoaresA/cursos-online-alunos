@@ -8,6 +8,7 @@ urlpatterns = [
     path('', include('alunos.urls')),
     path('usuarios/', include('usuarios.urls')),
     path('curso/', include('cursos.urls')),
+    path('captcha/', include('captcha.urls')),
 ]
 
 if settings.DEBUG:

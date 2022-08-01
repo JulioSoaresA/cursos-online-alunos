@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from cursos.validation import file_size
 
 
+
 class StatusAtividade(models.TextChoices):
     AGUARDANDO_AVALIACAO = 'AGUARDANDO_AVALIACAO', _('Aguardando avaliação')
     APROVADO = 'APROVADO', _('Aprovado')
@@ -54,6 +55,13 @@ class Matriculado(models.Model):
     cpf = models.CharField(verbose_name='CPF', max_length=11)
     curso = models.ForeignKey(Cursos, on_delete=models.CASCADE, null=True, related_name='cursos')
     porcentagem = models.IntegerField(verbose_name='Porcentagem do curso', null=True)
+    data_inscricao = models.DateTimeField(verbose_name='Data de inscrição', null=True)
+    data_conclusao = models.DateTimeField(verbose_name='Data de conclusão', null=True)
+    token_validacao = models.TextField(verbose_name='Token de validação', max_length=32, null=True)
 
     def __str__(self):
         return self.nome_completo
+
+
+class TokenValidacao(models.Model):
+    token = models.TextField(verbose_name='Token', max_length=32)

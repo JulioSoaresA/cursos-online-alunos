@@ -2,7 +2,7 @@
 {% load static %}
 {% load custom_filter_tag %}
 {% block content %}
-<div class="container mt-2">
+<div class="container">
     {% include 'partials/_menu.html' %}
     <h2>{{ curso.nome }}</h2>
     <div class="d-flex justify-content-between">
@@ -53,12 +53,6 @@
                 </div>
                 {% endfor %}
                 {% endif %}
-                <div class="col-8">
-                    {% if matricula_autenticada.porcentagem == 100 %}
-                    <button class="btn btn-danger">Curso concluído</button>
-                    <a href="{% url 'gera_certificado' curso.id %}" type="button" class="btn btn-secondary">Gerar certificado</a>
-                    {% endif %}
-                </div>
             </div>
         </div>
 
@@ -80,12 +74,16 @@
                             {% endfor %}
                         {% endfor %}
                         {% endif %}
-
-
                     </div>
                 </div>
                 <div class="col-8">
                     <button class="btn btn-danger" disabled>Seu progresso: {{matricula_autenticada.porcentagem}}%</button>
+                </div>
+                <div class="col-8 my-2">
+                    {% if matricula_autenticada.porcentagem == 100 %}
+                    <button class="btn btn-danger">Curso concluído</button>
+                    <a href="{% url 'gera_certificado' curso.id %}" type="button" class="btn btn-secondary">Gerar certificado</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
