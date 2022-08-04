@@ -18,7 +18,7 @@ Candidato: Júlio César Almeida Soares
 `python manage.py migrate`
 
 - É necessário criar um SuperUsuário<br>
-`python ./manage.py createsuperuser`
+`python manage.py createsuperuser`
 	- Dados necessários:
 		- CPF Válido ( [Gerador de CPF](https://www.4devs.com.br/gerador_de_cpf) )
 		- Data de Nascimento
