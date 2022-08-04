@@ -31,7 +31,7 @@ class Componente(models.Model):
         ordering = ['ordem']
 
     def __str__(self):
-        return self.nome_componente
+        return self.nome
 
 
 class Cursos(models.Model):

@@ -33,7 +33,7 @@ def matricula(request, curso_id):
         atividades2 = []
 
         for atividade in atividades:
-            atividades2.append(atividade.nome_componente)
+            atividades2.append(atividade.nome)
 
         context = {
             'curso': curso,
@@ -64,7 +64,7 @@ def matricula(request, curso_id):
             counter = 0
             for componente in componentes:
                 for atividade in atividades:
-                    if componente.nome_componente == atividade.nome_componente:
+                    if componente.nome == atividade.nome_componente:
                         if atividade.status == 'APROVADO':
                             componentes_aprovados.append(componente.ordem)
                             counter += 1
@@ -112,9 +112,7 @@ def matricula(request, curso_id):
 
 def envia_atividade(request, componente_id):
     componente = get_object_or_404(Componente, pk=componente_id)
-    print(request.Form)
     atv_enviada = request.FILES['envia_atividade']
-    print(atv_enviada.size)
     if request.method == 'POST':
 
         arquivo = request.FILES['envia_atividade']
@@ -130,7 +128,6 @@ def envia_atividade(request, componente_id):
         else:
             '''if arquivo.size > 1 * 1024 * 1024:
                 messages.error(request, 'Arquivo muito grande. Tamanho máximo: 1MB')'''
-            print()
             arquivo = request.FILES['envia_atividade']
             id_usuario = request.user.pk
             nova_avitidade = Atividades(arquivo=arquivo, id_usuario=id_usuario, nome_componente=componente, nome_usuario=request.user, status='AGUARDANDO_AVALIACAO')

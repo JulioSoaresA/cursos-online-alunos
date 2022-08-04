@@ -14,7 +14,7 @@
                 <div class="card border-danger mb-3">
                     <div class="card-header bg-transparent border-danger"><h6>Carga horária: {{ componente.carga_horaria }}h</h6></div>
                     <div class="card-body text-danger">
-                        <p class="card-text">{{ componente.nome_componente }}</p>
+                        <p class="card-text">{{ componente.nome }}</p>
                     </div>
                     <div class="card-footer bg-transparent border-danger">
                         <form action="{% url 'envia_atividade' componente.id %}" method="POST" enctype="multipart/form-data">
@@ -22,9 +22,9 @@
                             <label for="file">Atividade</label>
                             <input type="file" name="envia_atividade" class="form-control" required>
 
-                            {% if componente.nome_componente in comparador_atividade %}
+                            {% if componente.nome in comparador_atividade %}
                                 {% for atividade in comparador_atividade %}
-                                {% if atividade in componente.nome_componente %}
+                                {% if atividade in componente.nome %}
                                     {% for atividade2 in atividades %}
                                         {% if atividade2.nome_componente == atividade and atividade2.status == 'APROVADO'%}
                                             <button class="btn btn-outline-success" disabled>{{atividade2.status}}</button>
