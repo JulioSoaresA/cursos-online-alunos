@@ -1,0 +1,138 @@
+[
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "Integração ao AVASUS e PEPSUS",
+      "carga_horaria": 30,
+      "ordem": 1
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "Atenção à Saúde do Idoso na Atenção Primária à Saúde.",
+      "carga_horaria": 50,
+      "ordem": 2
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "Abordagem do Câncer na Atenção Primária à Saúde.",
+      "carga_horaria": 30,
+      "ordem": 3
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "Controle das Doenças Crônicas Não Transmissíveis na Atenção Primária à Saúde.",
+      "carga_horaria": 20,
+      "ordem": 4
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "Tópicos Especiais em Saúde da Família.",
+      "carga_horaria": 40,
+      "ordem": 5
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "Monitoramento e Avaliação.",
+      "carga_horaria": 40,
+      "ordem": 6
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "Seminário de Apresentação do TCC.",
+      "carga_horaria": 40,
+      "ordem": 7
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "Conceituando e classificando a sífilis",
+      "carga_horaria": 20,
+      "ordem": 1
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "Formas relevantes de apresentação da sífilis (parte I)",
+      "carga_horaria": 10,
+      "ordem": 2
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "Formas relevantes de apresentação da sífilis (parte II)",
+      "carga_horaria": 10,
+      "ordem": 3
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "HABILIDADES DE COMUNICAÇÃO NA ASSISTÊNCIA ÀS MÃES",
+      "carga_horaria": 10,
+      "ordem": 1
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "A AMAMENTAÇÃO NA MATERNIDADE",
+      "carga_horaria": 10,
+      "ordem": 2
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "PROTEGENDO A AMAMENTAÇÃO",
+      "carga_horaria": 10,
+      "ordem": 3
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "INICIATIVA HOSPITAL AMIGO DA CRIANÇA (IHAC)",
+      "carga_horaria": 10,
+      "ordem": 4
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "COVID-19: DESAFIO PARA A SAÚDE OCUPACIONAL",
+      "carga_horaria": 15,
+      "ordem": 1
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "LESÃO POR PRESSÃO RELACIONADA A DISPOSITIVO MÉDICO",
+      "carga_horaria": 15,
+      "ordem": 2
+    }
+  },
+  {
+    "model": "cursos.Componente",
+    "fields": {
+      "nome": "SEGURANÇA NO USO DE EPI EM TEMPOS DE COVID-19",
+      "carga_horaria": 10,
+      "ordem": 3
+    }
+  }
+]
