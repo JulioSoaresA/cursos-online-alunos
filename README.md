@@ -14,8 +14,8 @@ Candidato: Júlio César Almeida Soares
 
 ### Passos Iniciais para Funcionamento do Projeto
  - Crie e Execute de migrations para o banco de dados<br>
-`python ./manage.py makemigrations`<br>
-`python ./manage.py migrate`
+`python manage.py makemigrations`<br>
+`python manage.py migrate`
 
 - É necessário criar um SuperUsuário<br>
 `python ./manage.py createsuperuser`
