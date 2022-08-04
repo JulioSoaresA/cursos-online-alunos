@@ -11,8 +11,8 @@ class CursosAdmin(admin.ModelAdmin):
 
 
 class ComponenteAdmin(admin.ModelAdmin):
-    list_display = ('nome_componente', 'carga_horaria', )
-    list_display_links = ('nome_componente', )
+    list_display = ('nome', 'carga_horaria', )
+    list_display_links = ('nome', )
     filter_horizontal = ()
     list_filter = ()
     fieldsets = ()

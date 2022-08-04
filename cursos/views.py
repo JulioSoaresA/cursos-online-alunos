@@ -1,10 +1,9 @@
 import json
-
 import requests
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from cursos.models import Cursos, Componente, Matriculado, Atividades, TokenValidacao
-from .form import CaptchaForm
+from .forms import CaptchaForm
 from usuarios.models import Usuarios
 from datetime import datetime
 import secrets
@@ -113,17 +112,25 @@ def matricula(request, curso_id):
 
 def envia_atividade(request, componente_id):
     componente = get_object_or_404(Componente, pk=componente_id)
+    print(request.Form)
+    atv_enviada = request.FILES['envia_atividade']
+    print(atv_enviada.size)
     if request.method == 'POST':
+
+        arquivo = request.FILES['envia_atividade']
+
         if Atividades.objects.filter(nome_componente=componente, id_usuario=request.user.pk).exists():
             atividade = Atividades.objects.get(nome_componente=componente)
             atividade.delete()
-            arquivo = request.FILES['envia_atividade']
             id_usuario = request.user.pk
             nova_avitidade = Atividades(arquivo=arquivo, id_usuario=id_usuario, nome_componente=componente, nome_usuario=request.user, status='AGUARDANDO_AVALIACAO')
             nova_avitidade.save()
             componente.arquivo.add(nova_avitidade)
             return redirect('dashboard')
         else:
+            '''if arquivo.size > 1 * 1024 * 1024:
+                messages.error(request, 'Arquivo muito grande. Tamanho máximo: 1MB')'''
+            print()
             arquivo = request.FILES['envia_atividade']
             id_usuario = request.user.pk
             nova_avitidade = Atividades(arquivo=arquivo, id_usuario=id_usuario, nome_componente=componente, nome_usuario=request.user, status='AGUARDANDO_AVALIACAO')

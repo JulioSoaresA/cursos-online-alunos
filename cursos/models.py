@@ -22,7 +22,7 @@ class Atividades(models.Model):
 
 
 class Componente(models.Model):
-    nome_componente = models.CharField(verbose_name='Nome do componente', max_length=150)
+    nome = models.CharField(verbose_name='Nome do componente', max_length=150)
     carga_horaria = models.IntegerField(verbose_name='Carga horária')
     arquivo = models.ManyToManyField(Atividades, verbose_name='Atividades', related_name='matriculados')
     ordem = models.IntegerField()

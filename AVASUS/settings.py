@@ -138,4 +138,4 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'success',
 }
 
-FIXTURE_DIRS = os.path.join(BASE_DIR, 'fixtures')
+FIXTURE_DIRS = [BASE_DIR / 'fixtures']
