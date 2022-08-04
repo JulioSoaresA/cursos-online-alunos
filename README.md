@@ -14,16 +14,19 @@ Candidato: Júlio César Almeida Soares
 
 ### Passos Iniciais para Funcionamento do Projeto
  - Crie e Execute de migrations para o banco de dados<br>
-`python ./manage.py makemigrations`<br>
-`python ./manage.py migrate`
+`python manage.py makemigrations`<br>
+`python manage.py migrate`
 
 - É necessário criar um SuperUsuário<br>
-`python ./manage.py createsuperuser`
+`python manage.py createsuperuser`
 	- Dados necessários:
 		- CPF Válido ( [Gerador de CPF](https://www.4devs.com.br/gerador_de_cpf) )
 		- Data de Nascimento
 		- Senha
     - Indicador de privacidade (SIM ou NAO)
+- Carrege os dados de Cursos e Componentes<br>
+`python manage.py add_componentes`<br>
+`python manage.py add_cursos`
 - Agora é so iniciar o servidor<br>
-	`python .manage.py runserver`
+	`python .manage.py runserver
 
