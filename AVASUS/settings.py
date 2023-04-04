@@ -75,9 +75,9 @@ WSGI_APPLICATION = 'AVASUS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lais_backend',
+        'NAME': 'avasus_aluno',
         'USER': 'postgres',
-        'PASSWORD': '123456',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost'
     }
 }
